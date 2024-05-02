@@ -43,5 +43,5 @@ export class User extends Model {
     confirmKey: string
 
     @Column
-    image: string
+    operatorEmail: string | null    
 }

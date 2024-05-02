@@ -38,6 +38,15 @@ export class FilesService {
         }
     }
 
+    async getUserImage(email: string) {
+        const filePath = `${this.imagesDir}/${email}.png`
+        if (existsSync(filePath)) {
+            return filePath
+        } else {
+            throw new BadRequestException(AppErrors.NO_IMAGE)
+        }
+    }
+
     async saveWorkImage(file: MemoryStoredFile, token: string) {
         const decodedToken = await this.tokenService.decodeJwtToken(token)
         const user = await this.findUserByEmail(decodedToken.email)

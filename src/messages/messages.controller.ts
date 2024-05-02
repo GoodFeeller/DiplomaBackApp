@@ -16,4 +16,14 @@ export class MessagesController {
     getMessages(@Body() dto: {email: string}) {
         return this.messageService.getMessages(dto.email)
     }
+
+    @Post('/cancel-message')
+    cancelMessage(@Body() dto: { email: string, workId: number}) {
+        return this.messageService.cancelMessage(dto.email, dto.workId)
+    }
+
+    @Post('/accept-message')
+    acceptMessage(@Body() dto: { email: string, workId: number, work: string}) {
+        return this.messageService.acceptMessage(dto.email, dto.workId, dto.work)
+    }
 }

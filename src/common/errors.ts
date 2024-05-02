@@ -11,5 +11,6 @@ export enum AppErrors {
     WRONG_CONF_KEY = "Invalid confirm key",
     INVALID_EMAIL = "Invalid e-mail",
     NO_IMAGE = "This account doesn't have profile image",
-    ONLY_ADMIN = "This request avilable only for admin"
+    ONLY_ADMIN = "This request avilable only for admin",
+    ANOTHER_WORK = "This user have another work"
 }

@@ -38,4 +38,9 @@ export class FilesController {
         return res.sendFile(await this.filesService.getWorkFile(dto.workId))
     }
 
+    @Post('get-user-image')
+    async getUserImage(@Body() dto: { email: string}, @Res() res: Response) {
+        return res.sendFile(await this.filesService.getUserImage(dto.email))
+    }
+
 }

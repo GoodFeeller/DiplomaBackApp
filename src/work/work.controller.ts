@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { WorkService } from './work.service';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
-import { WorkDTO } from './dto';
+import { UpdateWorkerOperator, WorkDTO } from './dto';
 
 @Controller('work')
 export class WorkController {
@@ -21,4 +21,24 @@ export class WorkController {
         return this.workService.getAllUsers(token)
     }
 
+    @UseGuards(JwtAuthGuard)
+    @Post('remove-worker')
+    removeWorker(@Req() request, @Body() dto: {email: string}) {
+        const token = request.headers['authorization'].slice(7)
+        return this.workService.removeWorker(token, dto.email)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Get('get-workers')
+    getWorkers(@Req() request) {
+        const token = request.headers['authorization'].slice(7)
+        return this.workService.getWorkers(token)
+    }
+
+    @UseGuards(JwtAuthGuard)
+    @Post('update-workers-operator')
+    updateWorkersOperator(@Req() request, @Body() dto: UpdateWorkerOperator[]) {
+        const token = request.headers['authorization'].slice(7)
+        return this.workService.updateWorkersOperator(token, dto)
+    }
 }
