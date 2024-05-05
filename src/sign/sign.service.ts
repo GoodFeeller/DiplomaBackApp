@@ -208,7 +208,13 @@ export class SignService {
 
     async changeUserInfoByUser(token: string, dto: UpdateUserByUserRequest) {
         const decodedToken = await this.tokenService.decodeJwtToken(token)
-        dto.password = await this.hashPassword(dto.password)
+        if(dto.password == '') {
+            const user = await this.findUserByEmail(decodedToken.email)
+            dto.password = user.password
+        }
+        else {
+            dto.password = await this.hashPassword(dto.password)
+        }
         if(await this.updateUserByUser(dto, decodedToken.email)[0] == 0) throw new BadRequestException(AppErrors.UPDATE_ERROR)
         return
     }

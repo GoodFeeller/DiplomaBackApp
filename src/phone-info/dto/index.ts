@@ -1,16 +1,19 @@
-import { IsArray, IsString } from "class-validator";
+import { IsArray, IsNumber, IsString } from "class-validator";
 
 export class getNewHealthInfoDTO {
 
-    @IsString()
-    username: string
+    @IsNumber()
+    timestamp: number
+
+    @IsNumber()
+    pulse: number
+
+    @IsNumber()
+    temperature: number
+
+    @IsNumber()
+    saturation: number
 
     @IsArray()
-    pulse: number[]
-
-    @IsArray()
-    temperature: number[]
-
-    @IsArray()
-    saturation: number[]
+    cardiogram: number[]
 }

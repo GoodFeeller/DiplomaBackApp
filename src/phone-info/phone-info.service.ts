@@ -10,15 +10,17 @@ export class PhoneInfoService {
     constructor(@InjectModel(HealthInfo) private readonly healthInfoRepository: typeof HealthInfo,
     private readonly tokenService: TokenService) {}
 
-    async saveNewHealthInfo(dto: getNewHealthInfoDTO, token: string): Promise<string> {
+    async saveNewHealthInfo(dto: getNewHealthInfoDTO, token: string) {
         const decodedToken = await this.tokenService.decodeJwtToken(token)
-        if (decodedToken.user != dto.username) throw new HttpException('Forbidden', HttpStatus.FORBIDDEN)
         await this.healthInfoRepository.create({
-            username: dto.username,
-            pulse: JSON.stringify(dto.pulse),
-            saturation: JSON.stringify(dto.saturation),
-            temperature: JSON.stringify(dto.temperature)
+            email: decodedToken.email,
+            pulse: dto.pulse,
+            saturation: dto.saturation,
+            temperature: dto.temperature,
+            cardiogram: dto.cardiogram,
+            timestamp: dto.timestamp
         })
-        return 'Info was saved successful'
+        return
     }
+    
 }

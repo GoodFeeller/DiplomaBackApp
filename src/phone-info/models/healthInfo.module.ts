@@ -1,18 +1,24 @@
-import { Column, Table, Model } from "sequelize-typescript";
+import { Column, Table, Model, DataType } from "sequelize-typescript";
 
 @Table
 export class HealthInfo extends Model {
     
     @Column
-    username: string
+    email: string
 
     @Column
-    pulse: string
+    timestamp: number
 
-    @Column
-    temperature: string
+    @Column({type: DataType.DOUBLE})
+    pulse: number
 
-    @Column
-    saturation: string
+    @Column({type: DataType.DOUBLE})
+    temperature: number
+
+    @Column({type: DataType.DOUBLE})
+    saturation: number
+
+    @Column({type: DataType.ARRAY(DataType.DOUBLE)})
+    cardiogram: number[]
 
 }

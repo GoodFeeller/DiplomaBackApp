@@ -12,5 +12,8 @@ export enum AppErrors {
     INVALID_EMAIL = "Invalid e-mail",
     NO_IMAGE = "This account doesn't have profile image",
     ONLY_ADMIN = "This request avilable only for admin",
-    ANOTHER_WORK = "This user have another work"
+    ANOTHER_WORK = "This user have another work",
+    ONLY_ADMIN_OR_OPERATOR = "This request avilable only for admin or operator",
+    NOT_OPERATOR = "You are not operator for this user",
+    NOT_YOUR_OPERATOR = "This user is not your operator"
 }
